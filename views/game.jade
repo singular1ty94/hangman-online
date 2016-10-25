@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+
+  form(action='/game',method='post')
+    input(id='word',type='text',value='',placeholder='Word',name='word')
+    input(id='player',type='text',value='',placeholder='Player',name='player')
+    input(id='host',type='text',value='',placeholder='Host',name='host')
+    input(type='submit',value='Play')
