@@ -9,9 +9,9 @@ exports.save = function(game){
 //Retrieve the matching data model
 exports.retrieve = function(id){
   var game = {
-    word: dbgame[0].word,
-    player: dbgame[0].player,
-    host: dbgame[0].host
+    word: dbgame[id].word,
+    player: dbgame[id].player,
+    host: dbgame[id].host
   }
   return game;
 }
