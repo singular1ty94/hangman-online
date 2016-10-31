@@ -1,5 +1,8 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Hangman Online
+  p An online hangman game built using #[a(href="https://nodejs.org/en/") NodeJS].
+
+  a(class="btn btn-primary", href="/") Create a New Game
+  a(class="btn btn-success", "/") Join a Game
