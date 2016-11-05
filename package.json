@@ -1,12 +1,10 @@
 {
-  "name": "abx-developer-test",
+  "name": "hangman-online",
   "version": "0.0.1",
-  "description": "A simple TODO app",
+  "description": "Hangman, built for online play in NodeJS",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "debug": "set DEBUG=* && node server.js",
-    "test": "set DEBUG=*.js && node ./node_modules/mocha/bin/mocha --recursive"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "~1.4.3",
@@ -15,11 +13,5 @@
     "method-override": "~2.1.1",
     "mongoose": "~3.8.13",
     "morgan": "~1.1.1"
-  },
-  "devDependencies": {
-    "expect.js": "^0.3.1",
-    "mocha": "^2.3.4",
-    "rewire": "^2.5.0",
-    "supertest": "^1.1.0"
   }
 }
