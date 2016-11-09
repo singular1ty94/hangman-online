@@ -1,0 +1,19 @@
+<div class="col-md-4 col-md-offset-4">
+    <div class="container">
+      <div class="row">
+        <h2>Game Hub</h2>
+        <p>Welcome back, {{ user }}. Play or create games of Hangman!</p>
+      </div>
+      <div class="row">
+        <a class="btn btn-success" href="/#/create">Create Game</a>
+        &nbsp;
+        <a class="btn btn-primary" ng-click="join">Join Game</a>
+      </div>
+      <div class="row">
+        <br />
+        <div ng-controller="logoutController">
+          <button ng-click='logout()' class="btn btn-default">Logout</button>
+        </div>
+      </div>
+    </div>
+</div>
