@@ -124,16 +124,17 @@ angular.module('myApp').factory('AuthService',
     }
 
     /**
-     * Create a new game
+     * Create a new hangman game.
+     * @param word The word to be played.
      */
     function createGame(word) {
-
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a post request to the server
       $http.post('/game/create',
-        {word: word})
+        {word: word,
+        host: user})
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){
@@ -153,10 +154,10 @@ angular.module('myApp').factory('AuthService',
     }
 
     /**
-     * Fetch a game
+     * Fetch a game from the database.
+     * @param gameId The unique identifier (Mongo _id) of the game
      */
     function fetchGame(gameId) {
-
       // create a new instance of deferred
       var deferred = $q.defer();
 

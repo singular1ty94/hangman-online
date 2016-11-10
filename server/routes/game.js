@@ -10,15 +10,18 @@ var Game = require('../models/game.js');
 router.post('/create', function(req, res) {
 
   //Create a game
-  Game.create(new Game({word: req.body.word}), function(err, game){
-    if(err){
-      return res.status(500).json({err: err});
-    }
-    return res.status(200).json({
-      status: 'Game created successfully!',
-      gameId: game._id
+  Game.create(new Game({
+      word: req.body.word,
+      host: req.body.host._id
+    }), function(err, game){
+        if(err){
+          return res.status(500).json({err: err});
+        }
+        return res.status(200).json({
+          status: 'Game created successfully!',
+          gameId: game._id
+        });
     });
-  });
 });
 
 /**
@@ -27,7 +30,7 @@ router.post('/create', function(req, res) {
 router.get('/:gameId', function(req, res) {
 
   //Find a game
-  Game.findOne({ '_id': req.params.gameId }, function(err, game){
+  Game.findOne({ '_id': req.params.gameId }).populate('host').exec(function(err, game){
     if(err){
       return res.status(500).json({err: err});
     }
