@@ -64,9 +64,21 @@ angular.module('myApp').controller('registerController',
       AuthService.register($scope.registerForm.username, $scope.registerForm.password)
         // handle success
         .then(function () {
-          $location.path('/login');
-          $scope.disabled = false;
-          $scope.registerForm = {};
+          // call login from service
+          AuthService.login($scope.registerForm.username, $scope.registerForm.password)
+            // handle success
+            .then(function (data) {
+              $location.path('/');
+              $scope.disabled = false;
+              $scope.loginForm = {};
+            })
+            // handle error
+            .catch(function () {
+              $scope.error = true;
+              $scope.errorMessage = "Invalid username and/or password";
+              $scope.disabled = false;
+              $scope.loginForm = {};
+            });
         })
         // handle error
         .catch(function () {
