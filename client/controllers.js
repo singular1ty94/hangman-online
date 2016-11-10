@@ -1,3 +1,9 @@
+angular.module('myApp').controller('homeController',
+  ['$scope', '$location', 'AuthService',
+  function ($scope, $location, AuthService) {
+    $scope.user = AuthService.getUser();
+}]);
+
 angular.module('myApp').controller('loginController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
@@ -11,7 +17,7 @@ angular.module('myApp').controller('loginController',
       // call login from service
       AuthService.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
-        .then(function () {
+        .then(function (data) {
           $location.path('/');
           $scope.disabled = false;
           $scope.loginForm = {};

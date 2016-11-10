@@ -13,8 +13,13 @@ angular.module('myApp').factory('AuthService',
       login: login,
       logout: logout,
       register: register,
-      fetchGame: fetchGame
+      fetchGame: fetchGame,
+      getUser: getUser
     });
+
+    function getUser(){
+      return user;
+    }
 
     function isLoggedIn() {
       if(user) {
@@ -29,7 +34,7 @@ angular.module('myApp').factory('AuthService',
       // handle success
       .success(function (data) {
         if(data.status){
-          user = true;
+          user = data.user;
         } else {
           user = false;
         }
@@ -52,7 +57,7 @@ angular.module('myApp').factory('AuthService',
         .success(function (data, status) {
           if(status === 200 && data.status){
             user = true;
-            deferred.resolve();
+            deferred.resolve(data.username);
           } else {
             user = false;
             deferred.reject();
