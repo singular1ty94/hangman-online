@@ -14,7 +14,8 @@ angular.module('myApp').factory('AuthService',
       logout: logout,
       register: register,
       fetchGame: fetchGame,
-      getUser: getUser
+      getUser: getUser,
+      fetchGames: fetchGames
     });
 
     function getUser(){
@@ -163,6 +164,30 @@ angular.module('myApp').factory('AuthService',
 
       // send a get request to the server
       $http.get('/game/' + gameId)
+        // handle success
+        .success(function(data) {
+          deferred.resolve(data);
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+    /**
+     * Fetch all the games that this user is currently in.
+     * @param userId This user's id.
+     */
+    function fetchGames(userId) {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      // send a get request to the server
+      $http.get('/user/games/' + userId)
         // handle success
         .success(function(data) {
           deferred.resolve(data);

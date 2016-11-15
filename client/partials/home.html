@@ -15,5 +15,17 @@
           <button ng-click='logout()' class="btn btn-default">Logout</button>
         </div>
       </div>
+
+      <div class="row">
+        <h4>My Open Games</h4>
+        <div ng-show="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+        <table class="table">
+          <tr ng-repeat="g in games">
+            <td>{{g.word}}</td>
+            <td><a href="/#/play/{{g._id}}" class="btn btn-primary">Continue</a></td>
+          </tr>
+        </table>
+      </div>
+
     </div>
 </div>

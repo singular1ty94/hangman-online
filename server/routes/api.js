@@ -78,4 +78,20 @@ router.get('/status', function(req, res) {
   });
 });
 
+/**
+ * Get all the games that this user is part of.
+ */
+router.get('/games/:userId', function(req, res) {
+  //Find all games
+  Game.find({ $or:[ {'host': req.params.userId}, {'player':req.params.userId} ]}).exec(function(err, game){
+    if(err){
+      return res.status(500).json({err: err});
+    }
+    return res.status(200).json({
+      status: 'Retrieved games succesfully!',
+      games: games
+    });
+  });
+});
+
 module.exports = router;

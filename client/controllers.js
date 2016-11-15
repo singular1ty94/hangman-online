@@ -1,7 +1,17 @@
 angular.module('myApp').controller('homeController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
+    //Get the user.
     $scope.user = AuthService.getUser();
+
+    //Get all of the user's open games.
+    AuthService.fetchGames($scope.user._id)
+      .then(function(data){
+        $scope.games = data;
+      })
+      .catch(function(){
+        $scope.errorMessage = "Could not retrieve games.";
+      });
 }]);
 
 angular.module('myApp').controller('loginController',
